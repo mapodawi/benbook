@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before Anyone Knows Your Name – Dr. Ben Adkins</title>
+<link rel="icon" type="image/png" href="https://benbook.seekpages.com/images/bakynfav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+<script defer="defer" src="https://static.samcart.com/checkouts/sc-slide-script.js"></script>
+<style>
+  :root {
+    --accent: #ff0044;
+    --white: #ffffff;
+    --dark: #111111;
+    --dark-mid: #1a1a1a;
+    --accent-light: #fff0f4;
+    --accent-dim: #ff004412;
+    --gray-light: #f5f5f5;
+    --gray-mid: #888;
+    --gray-text: #b0b0b0;
+    --accent-glow: #ff004430;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 0 24px;
+    transition: box-shadow 0.3s;
+  }
+  .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dark); }
+
+  .nav-buy {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white) !important;
+    font-weight: 700 !important;
+    padding: 9px 24px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-buy:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--accent-glow);
+    color: var(--white) !important;
+  }
+
+  /* ── SECTIONS ── */
+  .section { padding: 80px 24px; }
+  .container { max-width: 780px; margin: 0 auto; }
+  .container-wide { max-width: 1000px; margin: 0 auto; }
+
+  .light { background: var(--white); color: var(--dark); }
+  .dark { background: var(--dark); color: var(--white); }
+  .dark-mid { background: var(--dark-mid); color: var(--white); }
+  .soft { background: var(--gray-light); color: var(--dark); }
+  .accent-bg { background: var(--accent); color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 120px 24px 80px;
+    background: var(--dark);
+    color: var(--white);
+  }
+
+  .hero-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-copy .eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .hero-copy h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero-copy h1 em { color: var(--accent); font-style: italic; }
+
+  .hero-copy .subtitle {
+    font-size: 1.05rem;
+    color: var(--gray-text);
+    margin-bottom: 32px;
+    line-height: 1.75;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+  }
+  .hero-meta-item { font-size: 0.82rem; color: var(--gray-mid); }
+  .hero-meta-item strong {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ── BOOK IMAGE ── */
+  .book-img-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .book-img-wrap img {
+    max-width: 380px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 16px 40px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px var(--accent-glow);
+  }
+  .cta-sub { font-size: 0.85rem; color: var(--gray-mid); margin-top: 12px; }
+
+  /* ── HEADINGS ── */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  h2 em { color: var(--accent); font-style: italic; }
+
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  /* ── BODY COPY ── */
+  .copy p {
+    font-size: 1.08rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+  .dark .copy p, .dark-mid .copy p { color: #d4d4d4; }
+  .soft .copy p { color: #333; }
+
+  .copy .callout {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--accent);
+    margin: 36px 0;
+    padding-left: 24px;
+    border-left: 4px solid var(--accent);
+  }
+
+  /* ── LETTER SECTION ── */
+  .letter-section {
+    padding: 80px 24px;
+    background: var(--gray-light);
+  }
+  .letter-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .letter-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #ddd;
+  }
+  .letter-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid var(--accent);
+  }
+  .letter-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .letter-from {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.3;
+  }
+  .letter-from span {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-mid);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .letter-body p {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  .letter-body .callout {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.65rem);
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--accent);
+    margin: 36px 0;
+    padding-left: 24px;
+    border-left: 4px solid var(--accent);
+  }
+  .letter-sig {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid #ddd;
+  }
+  .letter-sig-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .letter-sig-title {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+  }
+
+  /* ── IMAGE BREAK ── */
+  .img-break {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    height: 360px;
+  }
+  .img-break img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .img-break-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(17,17,17,0.75), rgba(255,0,68,0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .img-break-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    max-width: 600px;
+    padding: 0 24px;
+    line-height: 1.3;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  /* ── PART BLOCKS ── */
+  .part-block {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .light .part-block { background: var(--gray-light); border-color: #e0e0e0; }
+  .part-block .part-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .part-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+  .part-block p { font-size: 1rem; line-height: 1.75; margin-bottom: 0; }
+  .dark .part-block p, .dark-mid .part-block p { color: #b0b0b0; }
+
+  /* ── STRATEGY GRID ── */
+  .strat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .strat-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .strat-item {
+    background: var(--dark);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 24px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #d4d4d4;
+  }
+  .strat-item strong { color: var(--white); display: block; margin-bottom: 6px; font-size: 1rem; }
+  .strat-item .strat-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+  .soft .strat-item { background: var(--white); border-color: #e0e0e0; color: #444; }
+  .soft .strat-item strong { color: var(--dark); }
+  .light .strat-item { background: var(--gray-light); border-color: #e0e0e0; color: #444; }
+  .light .strat-item strong { color: var(--dark); }
+
+  /* ── NUMBERS ── */
+  .number-row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 48px 0 40px;
+    flex-wrap: wrap;
+  }
+  .number-item { text-align: center; }
+  .number-item .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .number-item .num-label {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    margin-top: 8px;
+  }
+
+  /* ── CHAPTER LIST ── */
+  .chapter-list { list-style: none; padding: 0; margin: 24px 0; }
+  .chapter-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 1rem;
+    color: #ccc;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .chapter-list .ch-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    min-width: 32px;
+    flex-shrink: 0;
+  }
+  .chapter-list .ch-title { font-weight: 600; color: var(--white); }
+
+  /* ── FAQ ── */
+  .faq-item { margin-bottom: 32px; }
+  .faq-item .faq-q { font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; }
+  .faq-item .faq-a { font-size: 1rem; color: #555; line-height: 1.75; }
+
+  /* ── GUARANTEE ── */
+  .guarantee-box {
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .guarantee-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 16px; }
+  .guarantee-box p { font-size: 1rem; line-height: 1.75; color: #ccc; margin-bottom: 0; }
+
+  /* ── MID CTA ── */
+  .cta-strip { padding: 60px 24px; text-align: center; }
+  .cta-strip h2 { margin-bottom: 12px; }
+  .cta-strip p { margin-bottom: 28px; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    text-align: center;
+    padding: 100px 24px;
+    background: var(--dark);
+    color: var(--white);
+  }
+  .final-cta h2 { margin-bottom: 20px; }
+  .final-cta p {
+    color: var(--gray-text);
+    font-size: 1.1rem;
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+  }
+
+  .centered { text-align: center; }
+  .centered p { max-width: 640px; margin-left: auto; margin-right: auto; }
+
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 32px;
+  }
+  .centered .section-divider { margin-left: auto; margin-right: auto; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .section { padding: 60px 20px; }
+    .hero { padding: 90px 20px 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero-meta { justify-content: center; }
+    .book-img-wrap img { max-width: 280px; }
+    .strat-grid, .strat-grid-3 { grid-template-columns: 1fr; }
+    .number-row { gap: 32px; }
+    .part-block { padding: 24px; }
+    .guarantee-box { padding: 28px; }
+    .final-cta { padding: 72px 20px; }
+    .nav { display: none; }
+    .nav-links .hide-mobile { display: none; }
+    .img-break { height: 260px; }
+    .letter-header { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .hero-meta { flex-direction: column; gap: 16px; align-items: center; }
+  }
+</style>
+    <title>Before Anyone Knows Your Name Book</title>
+    <meta property="og:title" content="Before Anyone Knows Your Name Book">
+    <meta name="description" content="200+ tested strategies for getting paying clients when you have no portfolio, no testimonials, and no reputation. The step-by-step guide built for digital agency owners starting from scratch.">
+    <meta property="og:description" content="200+ tested strategies for getting paying clients when you have no portfolio, no testimonials, and no reputation. The step-by-step guide built for digital agency owners starting from scratch.">
+    <meta property="og:image" content="https://benbook.seekpages.com/images/seekdoc-meta-image-template-1-.jpg">
+    <meta property="og:url" content="https://benbook.seekpages.com/">
+    <meta property="og:type" content="website">
+  </head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="https://benbook.seekpages.com/images/2.png" alt="Serial Progress Seeker" style="height: 32px; display: block;"></a>
+    <ul class="nav-links">
+      <li class="hide-mobile"><a href="#whats-inside">What's Inside</a></li>
+      <li class="hide-mobile"><a href="#chapters">Chapters</a></li>
+      <li><a href="https://serialprogress.mysamcart.com/checkout/before-anyone-knows-your-name-book#samcart-slide-open-right" class="nav-buy">Claim Your Spot</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">From Dr. Ben Adkins - Serial Progress Seeker</span>
+      <h1>The Playbook for Landing Clients <em>Before Anyone Knows Your Name</em></h1>
+      <p class="subtitle">120+ tested strategies for getting paying clients when you have no portfolio, no testimonials, and no reputation. The step-by-step guide to landing clients and growing a service business from absolute zero.</p>
+      <a href="https://serialprogress.mysamcart.com/checkout/before-anyone-knows-your-name-book#samcart-slide-open-right" class="cta-btn">Claim Your First Access Spot</a>
+      <p class="cta-sub" style="margin-top: 14px; font-size: 0.85rem; color: #999;">Only 100 First Access spots available.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><strong>120+</strong> Outside of the Box Strategies</div>
+        <div class="hero-meta-item"><strong>4</strong> Case Studies</div>
+        <div class="hero-meta-item"><strong>90</strong> Day Plan</div>
+      </div>
+    </div>
+    <div class="book-img-wrap">
+      <img src="https://benbook.seekpages.com/images/bakyn3d.png" alt="Before Anyone Knows Your Name – 3D book cover">
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ LETTER / STORY ════════════ -->
+<section class="letter-section">
+  <div class="letter-wrap">
+    <div class="letter-header">
+      <div class="letter-avatar">
+        <img src="https://benbook.seekpages.com/images/original.png" alt="Dr. Ben Adkins">
+      </div>
+      <div class="letter-from">
+        Dr. Ben Adkins
+        <span>Founder, Serial Progress Seeker</span>
+      </div>
+    </div>
+
+    <div class="letter-body">
+      <p>Let me tell you a quick story.</p>
+
+      <p>In 2010, I was a chiropractor with a brand new practice, a very empty waiting room, and about $200 left in my marketing budget after printing business cards that nobody was picking up from the sandwich shop down the street.</p>
+
+      <p>I couldn't afford a billboard. I couldn't afford a radio ad. I definitely couldn't afford to hire a marketing agency.</p>
+
+      <p>So I did the only thing I could afford. I started messing around on the internet.</p>
+
+      <p>I taught myself how to build a basic website. I figured out how to get my practice showing up in Google searches. I started posting on social media before most local businesses even had a Facebook page.</p>
+
+      <p>Most of what I tried didn't work. But some of it did. And the stuff that worked&hellip; worked&nbsp;fast.</p>
+
+      <p>Within a few months, other business owners started noticing. The restaurant owner across the street asked how I was getting so many Google reviews. A lawyer friend asked if I could "do whatever you're doing" for his firm.</p>
+
+      <p>I said yes to a few of them. Then a few more. Before I knew it, I was running a digital marketing agency on the side of my chiropractic practice.</p>
+
+      <p class="callout">"By 2013, I sold my chiropractic practice and went full-time into the agency. Since then, the businesses I've built have generated millions of dollars&nbsp;-&nbsp;for me and for the clients I've served along the way."</p>
+
+      <p>This book is every strategy I used to get there. And every strategy I've learned, borrowed, tested, and refined in the years since.</p>
+
+      <p>I wrote it for you - the service business owner (or soon-to-be business owner) who has the skills to deliver great work but hasn't figured out how to get people through the door yet. The one sitting where I sat in 2010.</p>
+
+      <p>I've been where you are. I know what it feels like. And I know it gets better.</p>
+
+      <p>But here's what I wish someone had told me on day one: you don't need to be an expert. You don't need a decade of experience or a wall full of awards. You just need to get close to the people and institutions that already have the trust you haven't earned yet. Do that, and everything changes fast.</p>
+
+      <p>That's what this book will show you how to do.</p>
+    </div>
+
+    <div class="letter-sig">
+      <div class="letter-sig-name">- Ben</div>
+      <div class="letter-sig-title">Dr. Ben Adkins &nbsp;&middot;&nbsp; Founder, Serial Progress Seeker</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ IMAGE BREAK 1 ════════════ -->
+<div class="img-break">
+  <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&q=80&auto=format" alt="">
+  <div class="img-break-overlay">
+    <div class="img-break-text">You don't need authority to be good at sales. You need proximity to authority.</div>
+  </div>
+</div>
+
+<!-- ════════════ THE PROBLEM ════════════ -->
+<section class="section dark">
+  <div class="container copy centered">
+    <div class="section-divider"></div>
+    <h2>The Hardest Part of Growing a Business <em>Isn't the Work</em></h2>
+    <p>You already know how to deliver results for clients. You can build websites. Run ads. Manage social media. The skills aren't the problem.</p>
+    <p>The problem is that nobody knows who you are yet.</p>
+    <p>Every prospect you talk to is silently wondering why they should trust you over the established competitor down the street. The one with the client wall. The one with the case studies. The one that's been around for a decade.</p>
+    <p>You don't have any of that. And every traditional piece of marketing advice assumes that you do.</p>
+    <p style="color: var(--accent); font-weight: 600; font-size: 1.15rem; margin-top: 28px;">This book was written for the moment before all of that exists.</p>
+  </div>
+</section>
+
+<!-- ════════════ WHAT'S INSIDE ════════════ -->
+<section class="section light" id="whats-inside">
+  <div class="container copy">
+    <div class="section-divider"></div>
+    <h2>What's Inside <em>the Book</em></h2>
+    <p>This isn't a motivational pep talk. It's not a high-level overview of "marketing principles." It's a tactical playbook with over 120 specific, numbered strategies you can execute this week&nbsp;-&nbsp;built to take you from zero to a full client pipeline.</p>
+
+    <div class="part-block">
+      <p class="part-label">Part One</p>
+      <h3>The Leverage Playbook</h3>
+      <p>14 chapters. 120+ numbered strategies for landing clients when you have zero authority. Every strategy falls into one of three core mechanics. Master them and you'll never wonder where your next client is coming from again.</p>
+    </div>
+    <div class="part-block">
+      <p class="part-label">Section 1: Borrowed Credibility</p>
+      <p>You don't have a reputation yet&nbsp;-&nbsp;so you borrow one. Attach yourself to charities, chambers of commerce, business associations, and well-connected people your prospects already trust. Their credibility transfers to you instantly. Includes cause-based leverage, platform leverage, institutional leverage, data and analysis leverage, community and relationship leverage, and content and education leverage.</p>
+    </div>
+    <div class="part-block">
+      <p class="part-label">Section 2: Risk Removal</p>
+      <p>When a prospect has no reason to trust you, give them no reason to say no. Structure your offers so the client pays nothing if you don't deliver. Financial risk reversal, speed and availability as trust&nbsp;-&nbsp;models that make your lack of track record completely irrelevant.</p>
+    </div>
+    <div class="part-block">
+      <p class="part-label">Section 3: Manufactured Demand</p>
+      <p>Engineer the perception of expertise and momentum before the revenue proves it. Social proof engineering, positioning and framing, timing and cultural leverage, outbound strategies that feel like help, marketplace leverage, and meta-plays so bold they generate their own attention.</p>
+    </div>
+    <div class="part-block">
+      <p class="part-label">Part Two</p>
+      <h3>Strategies in Action</h3>
+      <p>Four detailed case studies showing how a chiropractor, a photographer, a financial advisor, and a plumber each used the playbook to build thriving businesses from zero. Different industries, different personalities, same mechanics. You'll see exactly how the strategies combine in the real world.</p>
+    </div>
+    <div class="part-block">
+      <p class="part-label">Part Three</p>
+      <h3>Putting It All Together</h3>
+      <p>A week-by-week guide for your first 90 days&nbsp;-&nbsp;from zero to paying clients with real momentum. Plus a closing chapter on the journey from borrowing leverage to earning it to eventually lending it to the next person starting from scratch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ MID CTA ════════════ -->
+<section class="cta-strip accent-bg">
+  <h2 style="color: white;">Ready to Stop Waiting for Permission?</h2>
+  <p style="color: rgba(255,255,255,0.85); max-width: 540px; margin: 0 auto 28px; font-size: 1.05rem;">Every strategy in this book works even when nobody knows your name. That's the whole point.</p>
+  <a href="https://serialprogress.mysamcart.com/checkout/before-anyone-knows-your-name-book#samcart-slide-open-right" class="cta-btn" style="background: var(--white); color: var(--accent);">Claim Your First Access Spot</a>
+  <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 14px;">Only 100 First Access spots available.</p>
+</section>
+
+<!-- ════════════ THREE MECHANICS ════════════ -->
+<section class="section soft">
+  <div class="container copy">
+    <div class="section-divider"></div>
+    <h2>The Three Mechanics That Make <em>Unknown Businesses</em> Known</h2>
+    <p>Every strategy in the book falls into one of three categories. Master them and you'll never wonder where your next client is coming from again.</p>
+    <div class="strat-grid strat-grid-3">
+      <div class="strat-item">
+        <span class="strat-icon">&#x1F91D;</span>
+        <strong>Mechanic #1: Borrowed Credibility</strong>
+        Attach yourself to causes, platforms, institutions, and people that prospects already trust. Their credibility transfers to you&nbsp;-&nbsp;instantly.
+      </div>
+      <div class="strat-item">
+        <span class="strat-icon">&#x1F6E1;</span>
+        <strong>Mechanic #2: Risk Removal</strong>
+        Structure your offers so saying "yes" costs the client nothing if you don't deliver. When risk is zero, your lack of credentials becomes irrelevant.
+      </div>
+      <div class="strat-item">
+        <span class="strat-icon">&#x1F4C8;</span>
+        <strong>Mechanic #3: Manufactured Demand</strong>
+        Engineer the perception of expertise and momentum before the revenue proves it. In the early days, perception is reality.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════ CHAPTERS ════════════ -->
+<section class="section dark" id="chapters">
+  <div class="container">
+    <div class="section-divider"></div>
+    <h2>A Look at <em>Every Chapter</em></h2>
+    <p style="color: var(--gray-text); margin-bottom: 32px; font-size: 1.05rem;">Over 120 specific, actionable strategies across 20 chapters. Here's what you'll find.</p>
+    <p style="color: var(--accent); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">Part One: The Leverage Playbook</p>
+    <ul class="chapter-list">
+      <li><span class="ch-num">CH 1</span> <span><span class="ch-title">Cause-Based Leverage</span> - Make hiring you an act of generosity. Turn charity partnerships into a client engine that removes the burden of proof entirely.</span></li>
+      <li><span class="ch-num">CH 2</span> <span><span class="ch-title">Platform Leverage</span> - Ride someone else's audience, network, and trust. Turn one free project into dozens of warm introductions every week.</span></li>
+      <li><span class="ch-num">CH 3</span> <span><span class="ch-title">Institutional Leverage</span> - Let the chamber of commerce and business associations frame you as the expert before you've earned it yourself.</span></li>
+      <li><span class="ch-num">CH 4</span> <span><span class="ch-title">Data &amp; Analysis Leverage</span> - Demonstrate expertise by dissecting work you didn't do. Loom audits, YouTube teardowns, and live reviews that pre-sell prospects.</span></li>
+      <li><span class="ch-num">CH 5</span> <span><span class="ch-title">Community &amp; Relationship Leverage</span> - Embed yourself where trust already lives. Facebook groups, Slack communities, local forums, and real-world relationships.</span></li>
+      <li><span class="ch-num">CH 6</span> <span><span class="ch-title">Content &amp; Education Leverage</span> - Teach publicly so prospects pre-sell themselves. Workshops, webinars, LinkedIn posts, and newsletters.</span></li>
+      <li><span class="ch-num">CH 7</span> <span><span class="ch-title">Financial Risk Reversal</span> - Make the "yes" cost nothing until you deliver. Free audits, strategic free work, and "pay after results" structures.</span></li>
+      <li><span class="ch-num">CH 8</span> <span><span class="ch-title">Speed &amp; Availability as Trust</span> - Compete on responsiveness when you can't compete on reputation. Be the one who shows up fastest.</span></li>
+      <li><span class="ch-num">CH 9</span> <span><span class="ch-title">Social Proof Engineering</span> - Create the evidence of success before success arrives. Build a credible portfolio without paying clients.</span></li>
+      <li><span class="ch-num">CH 10</span> <span><span class="ch-title">Positioning &amp; Framing</span> - Change how people perceive you without changing what you deliver. Strategic framing that makes prospects assume you're already successful.</span></li>
+      <li><span class="ch-num">CH 11</span> <span><span class="ch-title">Timing, Trends &amp; Cultural Leverage</span> - Attach your offer to urgency that has nothing to do with you. Ride cultural moments and market timing.</span></li>
+      <li><span class="ch-num">CH 12</span> <span><span class="ch-title">Outbound &amp; Direct Leverage</span> - Engineer first conversations that are impossible to ignore. The "I Noticed" email, the Loom video, the free mockup.</span></li>
+      <li><span class="ch-num">CH 13</span> <span><span class="ch-title">Platform &amp; Marketplace Leverage</span> - Go where buyers are already looking and let the system do the trust-building for you.</span></li>
+      <li><span class="ch-num">CH 14</span> <span><span class="ch-title">Meta-Leverage</span> - When the strategy itself becomes the marketing. Plays so bold they generate their own attention.</span></li>
+    </ul>
+    <p style="color: var(--accent); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; margin-top: 36px;">Part Two: Strategies in Action</p>
+    <ul class="chapter-list">
+      <li><span class="ch-num">CH 15</span> <span><span class="ch-title">The Empty Practice</span> - How a new chiropractor went from zero patients to a full schedule in 6 months.</span></li>
+      <li><span class="ch-num">CH 16</span> <span><span class="ch-title">The Invisible Photographer</span> - How a wedding photographer built a $120K/year business without a single paid ad.</span></li>
+      <li><span class="ch-num">CH 17</span> <span><span class="ch-title">The Trusted Advisor</span> - How a new financial advisor built a client base of 40 families in one year.</span></li>
+      <li><span class="ch-num">CH 18</span> <span><span class="ch-title">The Neighborhood Plumber</span> - How a solo plumber went from $3,000/month to $18,000/month without a sales team.</span></li>
+    </ul>
+    <p style="color: var(--accent); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; margin-top: 36px;">Part Three: Putting It All Together</p>
+    <ul class="chapter-list">
+      <li><span class="ch-num">CH 19</span> <span><span class="ch-title">Your First 90 Days</span> - A step-by-step action plan. Week by week, from zero to paying clients with real momentum.</span></li>
+      <li><span class="ch-num">CH 20</span> <span><span class="ch-title">From Borrowed to Earned</span> - The endgame. How borrowed leverage becomes earned reputation, and how earned reputation becomes something you lend to others.</span></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ════════════ IMAGE BREAK 3 ════════════ -->
+<div class="img-break">
+  <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1400&q=80&auto=format" alt="">
+  <div class="img-break-overlay">
+    <div class="img-break-text">From unknown to the person everyone wants to be known&nbsp;by.</div>
+  </div>
+</div>
+
+<!-- ════════════ WHO IT'S FOR ════════════ -->
+<section class="section light">
+  <div class="container copy centered">
+    <div class="section-divider"></div>
+    <h2>This Book Was Written <em>for You</em> If&hellip;</h2>
+    <p>You sell a service and you're struggling to get clients because nobody knows who you are yet.</p>
+    <p>You're a freelancer, consultant, coach, or solo professional who wants to stop chasing clients and start attracting them.</p>
+    <p>You're a salesperson in any industry who needs to build trust with prospects who have no reason to trust you yet.</p>
+    <p>You're a business owner who needs to understand how to market yourself when nobody knows your name.</p>
+    <p>Or you're the person I was in 2010. Sitting in an empty room. Wondering how you're going to make this work. Knowing you're capable but not sure where to start.</p>
+    <p style="color: var(--accent); font-weight: 600; font-size: 1.15rem; margin-top: 28px;">This book is especially for you.</p>
+  </div>
+</section>
+
+<!-- ════════════ THE SHIFT ════════════ -->
+<section class="section soft">
+  <div class="container copy">
+    <div class="section-divider"></div>
+    <h2>From Borrowed Leverage <em>to Earned Reputation</em></h2>
+    <p>There's a moment every business owner who starts from zero eventually experiences.</p>
+    <p>Someone hires you without needing to be convinced. No pitch. No guarantee. No free mockup. No borrowed credential. They just hire you. Because they heard your name from someone they trust. Or they've been reading your newsletter for six months.</p>
+    <p>That's the shift from borrowed leverage to earned reputation. And once it starts, it accelerates. One happy client tells three people. Those three become clients who each tell three more.</p>
+    <p class="callout">"You stop running campaigns. You start receiving referrals. You stop explaining what you do. People already know. You stop borrowing. You start lending."</p>
+    <p>The strategies in this book get you to that moment faster than anything else I've seen in 15 years of building businesses from scratch.</p>
+  </div>
+</section>
+
+<!-- ════════════ GUARANTEE ════════════ -->
+<section class="section dark centered">
+  <div class="container">
+    <div class="section-divider"></div>
+    <div class="guarantee-box">
+      <h3>The Promise</h3>
+      <p>If you read this book, pick three strategies, and execute them consistently for 90 days&nbsp;-&nbsp;you will have paying clients. Not because of luck. Not because of timing. Because these strategies have been tested by thousands of people in thousands of markets. They work when nobody knows your name. That's the whole point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FAQ ════════════ -->
+<section class="section light">
+  <div class="container copy">
+    <div class="section-divider"></div>
+    <h2>Common <em>Questions</em></h2>
+    <div class="faq-item">
+      <p class="faq-q">I'm not in the industries covered by the case studies. Is this still useful?</p>
+      <p class="faq-a">Absolutely. The 120+ strategies in Part One work whether you're a consultant, coach, photographer, copywriter, or contractor. And Part Two includes case studies from four completely different industries. If you sell a service and need clients, this book was written for you.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">I already have some clients. Is this book just for beginners?</p>
+      <p class="faq-a">The strategies work at every stage. If you have 3 clients and want 30, the leverage mechanics in this book will get you there faster than what you're doing now.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">When do I get access?</p>
+      <p class="faq-a">You'll receive your digital copy as soon as your First Access spot is confirmed.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How long is the book?</p>
+      <p class="faq-a">20 chapters across three parts: the strategy playbook, four real-world case studies, and a 90-day action plan. But it's designed to be used, not just read. Pick one strategy from the first part of the book, execute it this week, and keep reading as you go.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FINAL CTA ════════════ -->
+<section class="final-cta" id="get-the-book">
+  <div class="container">
+    <div class="book-img-wrap" style="margin-bottom: 48px;">
+      <img src="https://benbook.seekpages.com/images/coveroffice.png" alt="Before Anyone Knows Your Name" style="max-width: 580px; width: 100%; border-radius: 6px;">
+    </div>
+    <h2>Stop Waiting for Permission. <em>Start Building&nbsp;Leverage.</em></h2>
+    <p>The strategies are here. The tools are here. The playbook is open. The only thing left is the decision to start&nbsp;-&nbsp;before you feel ready.</p>
+    <p style="color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-top: 32px;">Only 100 First Access spots available.</p>
+    <a href="https://serialprogress.mysamcart.com/checkout/before-anyone-knows-your-name-book#samcart-slide-open-right" class="cta-btn" style="margin-top: 28px;">Claim Your First Access Spot</a>
+    <p class="cta-sub" style="color: var(--gray-text); margin-top: 14px;">Only 100 spots. When they're gone, they're gone.</p>
+    <p style="color: #555; font-size: 0.85rem; margin-top: 40px;">From Dr. Ben Adkins&nbsp;&nbsp;&middot;&nbsp;&nbsp;Founder, Serial Progress Seeker</p>
+    <img src="https://benbook.seekpages.com/images/1.png" alt="Serial Progress Seeker" style="height: 40px; margin-top: 24px; opacity: 0.7;">
+    <p style="color: #999; font-size: 0.8rem; margin-top: 24px;">&copy; 2026 Serial Progress Seeker LLC. All Rights Reserved.</p>
+    <p style="color: #999; font-size: 0.8rem; margin-top: 8px;"><a href="https://serialprogressseeker.com/terms" style="color: #999; text-decoration: underline;">Terms of Service</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="https://serialprogressseeker.com/privacy" style="color: #999; text-decoration: underline;">Privacy Policy</a></p>
+  </div>
+</section>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
